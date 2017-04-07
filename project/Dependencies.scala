@@ -21,7 +21,7 @@ object Dependencies {
 
   val Versions = Seq(
     crossScalaVersions := Seq("2.11.8", "2.12.1"),
-    scalaVersion := System.getProperty("akka.build.scalaVersion", crossScalaVersions.value.head),
+    scalaVersion := System.getProperty("akka.build.scalaVersion", crossScalaVersions.value.last),
     scalaStmVersion := sys.props.get("akka.build.scalaStmVersion").getOrElse("0.8"),
     scalaCheckVersion := sys.props.get("akka.build.scalaCheckVersion").getOrElse(
       CrossVersion.partialVersion(scalaVersion.value) match {
