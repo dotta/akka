@@ -74,7 +74,7 @@ object AkkaDisciplinePlugin extends AutoPlugin {
   lazy val disciplineSettings =
     if (enabled) {
       silencerSettings ++ Seq(
-        Compile / scalacOptions ++= Seq("-Xfatal-warnings"),
+        //Compile / scalacOptions ++= Seq("-Xfatal-warnings"),
         Test / scalacOptions --= testUndicipline,
         Compile / javacOptions ++= (
             if (!nonFatalJavaWarningsFor(name.value)) Seq("-Werror", "-Xlint:deprecation", "-Xlint:unchecked")
@@ -102,7 +102,7 @@ object AkkaDisciplinePlugin extends AutoPlugin {
         // different compiler phases from the regular run), and in particular
         // '-Ywarn-unused:explicits' breaks 'sbt ++2.13.0-M5 akka-actor/doc'
         // https://github.com/akka/akka/issues/26119
-        Compile / doc / scalacOptions --= disciplineScalacOptions.toSeq :+ "-Xfatal-warnings",
+        Compile / doc / scalacOptions --= disciplineScalacOptions.toSeq /*:+ "-Xfatal-warnings"*/,
         // having discipline warnings in console is just an annoyance
         Compile / console / scalacOptions --= disciplineScalacOptions.toSeq)
     } else {
